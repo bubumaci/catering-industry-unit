@@ -7,13 +7,12 @@ import java.util.List;
 
 public class Pub {
 
-    List<Table> tableList;
-
-    Long profit;
+    private final List<Table> tableList;
+    private Long profit;
 
     public Pub() {
-        tableList = new ArrayList<>();
-        profit = 0L;
+        this.tableList = new ArrayList<>();
+        this.profit = 0L;
     }
 
     public void addTable(Table newTable) {
@@ -27,16 +26,33 @@ public class Pub {
         int incomingAmount = table.payAndCloseTable();
         profit += incomingAmount;
         System.out.println("Current profit balance: " + profit + "\n-----------------------");
+        if (table.isLoudTypeOfTable()) {
+            System.out.println("Loud table types can be reserved again.");
+        }
     }
 
     public boolean reserveTable(Table table) {
         if (table.isReserved()) {
             System.out.println(table.getClass().getSimpleName() + " unavailable!");
             return false;
+        } else if (isLoudTableReserved() && table.isLoudTypeOfTable()) {
+            System.out.println(table.getClass().getSimpleName() + " unavailable! Another loud table is already reserved.");
+            return false;
         } else {
-            table.setReserved(true);
-            System.out.println(table.getClass().getSimpleName() + " booked!");
+            handleReservingTable(table);
             return true;
         }
+    }
+
+    private void handleReservingTable(Table table) {
+        table.setReserved(true);
+        System.out.println(table.getClass().getSimpleName() + " booked!");
+        if (table.isLoudTypeOfTable()) {
+            System.out.println("No more loud table types can be reserved for a while now.");
+        }
+    }
+
+    public boolean isLoudTableReserved() {
+        return this.tableList.stream().filter(Table::isReserved).anyMatch(Table::isLoudTypeOfTable);
     }
 }

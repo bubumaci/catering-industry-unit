@@ -6,6 +6,11 @@ public class TableWithViolinPlayers extends Table {
 
     private static final int LIVE_MUSIC_BOOKING_BASE_PRICE = 4299;
 
+    public TableWithViolinPlayers() {
+        super();
+        isLoudTypeOfTable=true;
+    }
+
     @Override
     public void setReserved(boolean reserved) {
         super.setReserved(reserved);

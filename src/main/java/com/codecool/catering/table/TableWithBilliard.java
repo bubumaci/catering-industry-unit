@@ -6,6 +6,11 @@ public class TableWithBilliard extends Table {
 
     private static final int BILLIARD_BOOKING_BASE_PRICE = 1900;
 
+    public TableWithBilliard() {
+        super();
+        isLoudTypeOfTable=false;
+    }
+
     @Override
     public void setReserved(boolean reserved) {
         super.setReserved(reserved);

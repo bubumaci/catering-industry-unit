@@ -8,11 +8,17 @@ import java.util.List;
 public class Table {
 
     private final List<OrderItem> orderItemList;
+    protected boolean isLoudTypeOfTable;
     private boolean isReserved;
 
     public Table() {
-        orderItemList = new ArrayList<>();
-        isReserved = false;
+        this.isLoudTypeOfTable = false;
+        this.orderItemList = new ArrayList<>();
+        this.isReserved = false;
+    }
+
+    public boolean isLoudTypeOfTable() {
+        return isLoudTypeOfTable;
     }
 
     public boolean isReserved() {

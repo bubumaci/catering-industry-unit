@@ -1,8 +1,8 @@
 package com.codecool.catering.order;
 
 public class OrderItem {
-    String name;
-    int price;
+    private final String name;
+    private final int price;
 
     public OrderItem(String name, int price) {
         this.name = name;
